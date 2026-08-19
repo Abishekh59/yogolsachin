@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Book {
+  id                 String   @id @default(uuid())
+  title              String
+  size               String
+  isbn               String
+  author             String
+  genre              String
+  layoutDesigner     String
+  collaboratorArtist String
+  description        String
+  coverImageUrl      String
+  publication        String
+  hasSpotUV          Boolean  @default(false)
+  hasMatteLamination Boolean  @default(false)
+  hasFoilEmboss      Boolean  @default(false)
+  isBestSeller       Boolean  @default(false)
+  isAwardWinner      Boolean  @default(false)
+  awardName          String   @default("")
+  purchaseLink       String   @default("")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
