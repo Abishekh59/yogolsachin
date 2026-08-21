@@ -42,8 +42,8 @@ function PubCircle({ pub, size = 56 }: { pub: Publisher; size?: number }) {
         position: 'relative',
       }}
     >
-      <Image src={PUBLISHERS[pub].logo} alt={PUBLISHERS[pub].label}
-        width={size} height={size}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={PUBLISHERS[pub].logo} alt={PUBLISHERS[pub].label}
         style={{
           width: '100%', height: '100%', objectFit: 'cover', display: 'block',
           filter: hov ? 'none' : 'saturate(0.92)',

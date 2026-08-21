@@ -1,8 +1,8 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // Allow external images from Unsplash
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

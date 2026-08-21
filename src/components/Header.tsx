@@ -40,10 +40,10 @@ function PubCircle({ pub, size = 56, onClick }: { pub: Publisher; size?: number;
         transform: hov ? 'translateY(-4px) scale(1.05)' : 'scale(1)',
         flexShrink: 0,
       }}>
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={PUBLISHERS[pub].logo}
           alt={PUBLISHERS[pub].label}
-          width={size} height={size}
           style={{
             width: '100%', height: '100%', objectFit: 'cover', display: 'block',
             filter: hov ? 'none' : 'saturate(0.9)',
@@ -463,10 +463,10 @@ export default function Header() {
                             onTouchEnd={e => {
                               e.currentTarget.style.transform = 'scale(1)'
                             }}>
-                            <Image
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
                               src={PUBLISHERS[p].logo}
                               alt={PUBLISHERS[p].label}
-                              width={40} height={40}
                               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                             />
                           </div>
