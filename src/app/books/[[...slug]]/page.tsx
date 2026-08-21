@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -41,7 +42,8 @@ function PubCircle({ pub, size = 56 }: { pub: Publisher; size?: number }) {
         position: 'relative',
       }}
     >
-      <img src={PUBLISHERS[pub].logo} alt={PUBLISHERS[pub].label}
+      <Image src={PUBLISHERS[pub].logo} alt={PUBLISHERS[pub].label}
+        width={size} height={size}
         style={{
           width: '100%', height: '100%', objectFit: 'cover', display: 'block',
           filter: hov ? 'none' : 'saturate(0.92)',

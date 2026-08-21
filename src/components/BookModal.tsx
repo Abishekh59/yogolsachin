@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Image from 'next/image'
 
 type BookModalProps = {
   book: any // We'll type this better if needed
@@ -70,9 +71,10 @@ export default function BookModal({ book, onClose }: BookModalProps) {
               transformStyle: 'preserve-3d',
             }}
           >
-             <img 
-               src={book.imgSrc || book.img} 
+             <Image
+               src={book.imgSrc || book.img || '/placeholder.jpg'}
                alt={book.title}
+               width={200} height={300}
                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
              />
              {/* Spine effect */}
@@ -210,19 +212,19 @@ export default function BookModal({ book, onClose }: BookModalProps) {
               <div style={{ display: 'flex', gap: '1.5rem', textAlign: 'center' }}>
                 {book.hasSpotUV && (
                   <div>
-                    <img src="/logo/Spot UV.png" alt="Spot UV" style={{ width: '48px', height: '48px', margin: '0 auto 0.25rem', display: 'block', objectFit: 'contain' }} />
+                    <Image src="/logo/Spot UV.png" alt="Spot UV" width={48} height={48} style={{ width: '48px', height: '48px', margin: '0 auto 0.25rem', display: 'block', objectFit: 'contain' }} />
                     <div style={{ fontSize: '0.6rem', color: '#333', lineHeight: 1.1 }}>Spot UV</div>
                   </div>
                 )}
                 {book.hasMatteLamination && (
                   <div>
-                    <img src="/logo/Matte Lamination.png" alt="Matte Lamination" style={{ width: '48px', height: '48px', margin: '0 auto 0.25rem', display: 'block', objectFit: 'contain' }} />
+                    <Image src="/logo/Matte Lamination.png" alt="Matte Lamination" width={48} height={48} style={{ width: '48px', height: '48px', margin: '0 auto 0.25rem', display: 'block', objectFit: 'contain' }} />
                     <div style={{ fontSize: '0.6rem', color: '#333', lineHeight: 1.1 }}>Matte<br/>Lamination</div>
                   </div>
                 )}
                 {book.hasFoilEmboss && (
                   <div>
-                    <img src="/logo/Foil Emboss.png" alt="Foil Emboss" style={{ width: '48px', height: '48px', margin: '0 auto 0.25rem', display: 'block', objectFit: 'contain' }} />
+                    <Image src="/logo/Foil Emboss.png" alt="Foil Emboss" width={48} height={48} style={{ width: '48px', height: '48px', margin: '0 auto 0.25rem', display: 'block', objectFit: 'contain' }} />
                     <div style={{ fontSize: '0.6rem', color: '#333', lineHeight: 1.1 }}>Foil<br/>Emboss</div>
                   </div>
                 )}
