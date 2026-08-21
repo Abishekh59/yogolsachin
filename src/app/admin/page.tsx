@@ -331,9 +331,13 @@ export default function AdminPage() {
                 <div style={rowStyle}>
                   <div style={fieldWrap}>
                     <label style={labelStyle}>Size</label>
-                    <input style={inputStyle} value={form.size} onChange={set('size')}
-                      placeholder="5.5 × 8.5 inches" onFocus={e => e.currentTarget.style.borderColor = '#c9a227'}
-                      onBlur={e => e.currentTarget.style.borderColor = 'rgba(14,12,10,0.15)'} />
+                    <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.size} onChange={set('size')}
+                      onFocus={e => e.currentTarget.style.borderColor = '#c9a227'}
+                      onBlur={e => e.currentTarget.style.borderColor = 'rgba(14,12,10,0.15)'}>
+                      <option value="">Select size</option>
+                      <option value="130mm x 200mm">130mm x 200mm</option>
+                      <option value="140mm x 215mm">140mm x 215mm</option>
+                    </select>
                   </div>
                   <div style={fieldWrap}>
                     <label style={labelStyle}>ISBN</label>
