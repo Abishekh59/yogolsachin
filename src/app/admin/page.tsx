@@ -51,6 +51,13 @@ export default function AdminPage() {
   const [passwordInput, setPasswordInput] = useState('')
   const fileRef = useRef<HTMLInputElement>(null)
 
+  // Auto-dismiss toast after 3 seconds
+  useEffect(() => {
+    if (!message) return
+    const t = setTimeout(() => setMessage(null), 3000)
+    return () => clearTimeout(t)
+  }, [message])
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
     if (emailInput === 'yogolsachin@gmail.com' && passwordInput === 'Sachin@Yogal2026!') {
@@ -230,20 +237,28 @@ export default function AdminPage() {
         </p>
       </div>
 
-      {/* Message Toast */}
+      {/* Popup Toast — fixed bottom right */}
       {message && (
         <div style={{
-          maxWidth: 920, margin: '0 auto 1.5rem', padding: '1rem 1.25rem',
-          borderRadius: '10px', fontSize: '0.8125rem',
-          background: message.type === 'success' ? 'rgba(106,185,120,0.12)' : 'rgba(220,53,69,0.12)',
-          border: `1px solid ${message.type === 'success' ? 'rgba(106,185,120,0.25)' : 'rgba(220,53,69,0.25)'}`,
-          color: message.type === 'success' ? '#2d7a3e' : '#c03030',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 9999,
+          padding: '1rem 1.5rem',
+          borderRadius: '12px',
+          fontSize: '0.875rem', fontWeight: 500,
+          background: message.type === 'success' ? '#2d7a3e' : '#c03030',
+          color: '#fff',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+          display: 'flex', alignItems: 'center', gap: '1rem',
+          minWidth: '260px', maxWidth: '380px',
+          animation: 'slideInToast 0.3s ease',
         }}>
-          {message.text}
+          <span style={{ flex: 1 }}>
+            {message.type === 'success' ? '✓ ' : '✕ '}{message.text}
+          </span>
           <button onClick={() => setMessage(null)} style={{
-            background: 'none', border: 'none', color: 'inherit', cursor: 'pointer',
-            fontSize: '1.25rem', lineHeight: 1, padding: '0 0.25rem',
+            background: 'rgba(255,255,255,0.2)', border: 'none', color: '#fff',
+            cursor: 'pointer', fontSize: '1rem', lineHeight: 1,
+            width: '24px', height: '24px', borderRadius: '50%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
           }}>×</button>
         </div>
       )}
