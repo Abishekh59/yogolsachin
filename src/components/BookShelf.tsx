@@ -18,25 +18,25 @@ type ShelfBook = {
 
 /* ─── Fallback catalog (mint-playground style) ─── */
 const FALLBACK_BOOKS: ShelfBook[] = [
-  { id: 'maintenance',    title: 'Maintenance: Of Everything',      author: 'Stewart Brand',          cover: '#4d746d', accent: '#b36b43', ink: '#f0e5cf', height: 1.10, thickness: 36, publication: 'bh' },
-  { id: 'poor-charlie',   title: "Poor Charlie's Almanack",         author: 'Peter D. Kaufman',       cover: '#6f2130', accent: '#d5a756', ink: '#f4ead7', height: 1.08, thickness: 32, publication: 'fp' },
-  { id: 'art-of-science', title: 'The Art of Doing Science',        author: 'Dwarkesh Patel',         cover: '#c07040', accent: '#1a2a4a', ink: '#f5e8d0', height: 1.05, thickness: 30, publication: 'kitab' },
-  { id: 'high-growth',    title: 'High Growth Handbook',            author: 'Elad Gil',               cover: '#1c2b4a', accent: '#e0a955', ink: '#f5edd8', height: 1.12, thickness: 38, publication: 'imprint' },
-  { id: 'origins',        title: 'The Origins of Efficiency',       author: 'Brian Potter',           cover: '#e8ddc6', accent: '#2457a6', ink: '#bf493f', height: 1.06, thickness: 28, publication: 'nepalaya' },
-  { id: 'scaling-people', title: 'Scaling People',                  author: 'Claire Hughes Johnson',  cover: '#c06858', accent: '#f5e8d0', ink: '#1a0a08', height: 1.09, thickness: 34, publication: 'lipi' },
-  { id: 'revolt-public',  title: 'The Revolt of the Public',        author: 'Martin Gurri',           cover: '#e8c8a0', accent: '#3a1a0a', ink: '#2a1408', height: 1.07, thickness: 30, publication: 'sunbarshi' },
-  { id: 'big-score',      title: 'The Big Score',                   author: 'Michael S. Malone',      cover: '#1a1a1a', accent: '#c0a040', ink: '#f0e8d0', height: 1.04, thickness: 26, publication: 'indigo' },
-  { id: 'elegant-puzzle', title: 'An Elegant Puzzle',               author: 'Will Larson',            cover: '#2a3a2a', accent: '#c0b050', ink: '#f4ead4', height: 1.10, thickness: 32, publication: 'kalam' },
-  { id: 'scaling-era',    title: 'The Scaling Era',                 author: 'John Collison',          cover: '#1e2a4a', accent: '#c8a840', ink: '#f0e8d0', height: 1.08, thickness: 34, publication: 'shailee' },
-  { id: 'boom',           title: 'Boom',                            author: 'Ben Reinhardt',          cover: '#3a2010', accent: '#d08040', ink: '#f4e8d4', height: 1.06, thickness: 30, publication: 'sambodhan' },
-  { id: 'network-state',  title: 'The Network State',               author: 'Balaji Srinivasan',      cover: '#1e3040', accent: '#c0a040', ink: '#f0e8d0', height: 1.11, thickness: 36, publication: 'ratna' },
-  { id: 'working-public', title: 'Working in Public',               author: 'Nadia Eghbal',           cover: '#2a1520', accent: '#d4806a', ink: '#f5e0d0', height: 1.05, thickness: 28, publication: 'educational' },
-  { id: 'zero-one',       title: 'Zero to One',                     author: 'Peter Thiel',            cover: '#0a0a0a', accent: '#c9a227', ink: '#f0e8d0', height: 1.09, thickness: 26, publication: 'sas' },
-  { id: 'hard-thing',     title: 'The Hard Thing About Hard Things', author: 'Ben Horowitz',          cover: '#1a3040', accent: '#e0b060', ink: '#f5edd8', height: 1.07, thickness: 32, publication: 'shangrila' },
-  { id: 'innovators',     title: 'The Innovators',                  author: 'Walter Isaacson',        cover: '#2e1f3e', accent: '#c4a055', ink: '#f5e8d0', height: 1.12, thickness: 38, publication: 'bh' },
-  { id: 'made-to-stick',  title: 'Made to Stick',                   author: 'Chip & Dan Heath',       cover: '#8b2020', accent: '#f0d070', ink: '#f8f0e0', height: 1.04, thickness: 28, publication: 'fp' },
-  { id: 'lean-startup',   title: 'The Lean Startup',                author: 'Eric Ries',              cover: '#1a3a1a', accent: '#c0d040', ink: '#f0f4e0', height: 1.08, thickness: 30, publication: 'kitab' },
-  { id: 'shoe-dog',       title: 'Shoe Dog',                        author: 'Phil Knight',            cover: '#3a1a0a', accent: '#e08040', ink: '#f5e8d0', height: 1.06, thickness: 34, publication: 'imprint' },
+  { id: 'maintenance',    title: 'Maintenance: Of Everything',      author: 'Stewart Brand',          cover: '#4d746d', accent: '#b36b43', ink: '#f0e5cf', height: 1.10, thickness: 48, publication: 'bh' },
+  { id: 'poor-charlie',   title: "Poor Charlie's Almanack",         author: 'Peter D. Kaufman',       cover: '#6f2130', accent: '#d5a756', ink: '#f4ead7', height: 1.08, thickness: 42, publication: 'fp' },
+  { id: 'art-of-science', title: 'The Art of Doing Science',        author: 'Dwarkesh Patel',         cover: '#c07040', accent: '#1a2a4a', ink: '#f5e8d0', height: 1.05, thickness: 38, publication: 'kitab' },
+  { id: 'high-growth',    title: 'High Growth Handbook',            author: 'Elad Gil',               cover: '#1c2b4a', accent: '#e0a955', ink: '#f5edd8', height: 1.12, thickness: 52, publication: 'imprint' },
+  { id: 'origins',        title: 'The Origins of Efficiency',       author: 'Brian Potter',           cover: '#e8ddc6', accent: '#2457a6', ink: '#bf493f', height: 1.06, thickness: 36, publication: 'nepalaya' },
+  { id: 'scaling-people', title: 'Scaling People',                  author: 'Claire Hughes Johnson',  cover: '#c06858', accent: '#f5e8d0', ink: '#1a0a08', height: 1.09, thickness: 44, publication: 'lipi' },
+  { id: 'revolt-public',  title: 'The Revolt of the Public',        author: 'Martin Gurri',           cover: '#e8c8a0', accent: '#3a1a0a', ink: '#2a1408', height: 1.07, thickness: 40, publication: 'sunbarshi' },
+  { id: 'big-score',      title: 'The Big Score',                   author: 'Michael S. Malone',      cover: '#1a1a1a', accent: '#c0a040', ink: '#f0e8d0', height: 1.04, thickness: 34, publication: 'indigo' },
+  { id: 'elegant-puzzle', title: 'An Elegant Puzzle',               author: 'Will Larson',            cover: '#2a3a2a', accent: '#c0b050', ink: '#f4ead4', height: 1.10, thickness: 42, publication: 'kalam' },
+  { id: 'scaling-era',    title: 'The Scaling Era',                 author: 'John Collison',          cover: '#1e2a4a', accent: '#c8a840', ink: '#f0e8d0', height: 1.08, thickness: 46, publication: 'shailee' },
+  { id: 'boom',           title: 'Boom',                            author: 'Ben Reinhardt',          cover: '#3a2010', accent: '#d08040', ink: '#f4e8d4', height: 1.06, thickness: 38, publication: 'sambodhan' },
+  { id: 'network-state',  title: 'The Network State',               author: 'Balaji Srinivasan',      cover: '#1e3040', accent: '#c0a040', ink: '#f0e8d0', height: 1.11, thickness: 48, publication: 'ratna' },
+  { id: 'working-public', title: 'Working in Public',               author: 'Nadia Eghbal',           cover: '#2a1520', accent: '#d4806a', ink: '#f5e0d0', height: 1.05, thickness: 36, publication: 'educational' },
+  { id: 'zero-one',       title: 'Zero to One',                     author: 'Peter Thiel',            cover: '#0a0a0a', accent: '#c9a227', ink: '#f0e8d0', height: 1.09, thickness: 34, publication: 'sas' },
+  { id: 'hard-thing',     title: 'The Hard Thing About Hard Things', author: 'Ben Horowitz',          cover: '#1a3040', accent: '#e0b060', ink: '#f5edd8', height: 1.07, thickness: 44, publication: 'shangrila' },
+  { id: 'innovators',     title: 'The Innovators',                  author: 'Walter Isaacson',        cover: '#2e1f3e', accent: '#c4a055', ink: '#f5e8d0', height: 1.12, thickness: 50, publication: 'bh' },
+  { id: 'made-to-stick',  title: 'Made to Stick',                   author: 'Chip & Dan Heath',       cover: '#8b2020', accent: '#f0d070', ink: '#f8f0e0', height: 1.04, thickness: 36, publication: 'fp' },
+  { id: 'lean-startup',   title: 'The Lean Startup',                author: 'Eric Ries',              cover: '#1a3a1a', accent: '#c0d040', ink: '#f0f4e0', height: 1.08, thickness: 40, publication: 'kitab' },
+  { id: 'shoe-dog',       title: 'Shoe Dog',                        author: 'Phil Knight',            cover: '#3a1a0a', accent: '#e08040', ink: '#f5e8d0', height: 1.06, thickness: 44, publication: 'imprint' },
 ]
 
 /* ─── Palette generator ─── */
@@ -131,9 +131,8 @@ function Book({ book, index, isActive, bookH, onClick }: {
   book: ShelfBook; index: number; isActive: boolean; bookH: number; onClick: () => void
 }) {
   const [hov, setHov] = useState(false)
-  const active = hov || isActive
   const motif = MOTIFS[index % MOTIFS.length]
-  const coverW = Math.round(book.thickness * 4.2)
+  const coverW = Math.round(book.thickness * 4.8)
 
   return (
     <div
@@ -146,73 +145,47 @@ function Book({ book, index, isActive, bookH, onClick }: {
         height: `${book.height * bookH}px`,
         alignSelf: 'flex-end',
         flexShrink: 0,
-        transition: 'transform 0.4s cubic-bezier(0.22,1,0.36,1)',
-        transform: active ? 'translateY(-22px)' : 'translateY(0)',
+        transition: 'transform 0.45s cubic-bezier(0.22,1,0.36,1), z-index 0s',
+        transform: isActive
+          ? 'translateY(-32px) scale(1.04)'
+          : hov
+          ? 'translateY(-10px)'
+          : 'translateY(0)',
         transformOrigin: 'bottom center',
-        zIndex: active ? 10 : 1,
+        zIndex: isActive ? 20 : hov ? 10 : 1,
       }}
     >
-      <div style={{
-        position: 'relative',
-        height: '100%',
-        width: `${book.thickness}px`,
-        transformStyle: 'preserve-3d',
-        transform: active ? 'perspective(700px) rotateY(-28deg)' : 'perspective(700px) rotateY(0deg)',
-        transition: 'transform 0.45s cubic-bezier(0.22,1,0.36,1)',
-      }}>
-
-        {/* ── Spine ── */}
+      {/* ── When active: show full front cover facing straight ── */}
+      {isActive ? (
         <div style={{
-          position: 'absolute', inset: 0,
+          position: 'absolute',
+          bottom: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: `${coverW}px`,
+          height: `${book.height * bookH}px`,
           background: book.cover,
-          borderRadius: '2px 0 0 2px',
+          borderRadius: '3px 3px 0 0',
           overflow: 'hidden',
-          boxShadow: active ? '-5px 8px 24px rgba(0,0,0,0.38)' : '-2px 4px 12px rgba(0,0,0,0.24)',
-          transition: 'box-shadow 0.4s ease',
+          boxShadow: '0 12px 48px rgba(0,0,0,0.45), -4px 0 12px rgba(0,0,0,0.15)',
+          animation: 'bookFaceIn 0.42s cubic-bezier(0.22,1,0.36,1) both',
         }}>
-          {/* accent stripe */}
-          <div style={{ position:'absolute', left:4, top:10, bottom:10, width:3, background:book.accent, borderRadius:2, opacity:.9 }}/>
-          {/* rotated title */}
-          <div style={{
-            position:'absolute', bottom:24, left:'50%',
-            transform:'translateX(-50%) rotate(-90deg)',
-            transformOrigin:'center center',
-            width:`${book.height * bookH - 52}px`,
-            textAlign:'left', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis',
-          }}>
-            <span style={{
-              fontFamily:'"Newsreader","Georgia",serif',
-              fontSize: book.title.length > 22 ? '7px' : '8.5px',
-              fontWeight:500, color:book.ink, letterSpacing:'0.04em', opacity:.9,
-            }}>{book.title}</span>
-          </div>
-          {/* headbands */}
-          <div style={{ position:'absolute', top:3, left:4, right:4, height:5, background:book.accent, borderRadius:'1px 1px 0 0', opacity:.85 }}/>
-          <div style={{ position:'absolute', bottom:3, left:4, right:4, height:5, background:book.accent, borderRadius:'0 0 1px 1px', opacity:.85 }}/>
-        </div>
+          <style>{`
+            @keyframes bookFaceIn {
+              from { opacity:0; transform:translateY(12px) scale(0.97); }
+              to   { opacity:1; transform:translateY(0)   scale(1); }
+            }
+          `}</style>
 
-        {/* ── Front cover (revealed on hover) ── */}
-        <div style={{
-          position:'absolute', top:0, left:`${book.thickness}px`,
-          width:`${coverW}px`, height:'100%',
-          background:book.cover,
-          borderRadius:'0 3px 3px 0',
-          overflow:'hidden',
-          opacity: active ? 1 : 0,
-          transform: active ? 'translateX(0)' : 'translateX(-10px)',
-          transition:'opacity 0.35s ease, transform 0.42s cubic-bezier(0.22,1,0.36,1)',
-          boxShadow:'5px 5px 20px rgba(0,0,0,0.28)',
-          pointerEvents:'none',
-        }}>
           <MotifSVG motif={motif} accent={book.accent} w={coverW} h={book.height * bookH}/>
 
           {/* grain */}
-          <div style={{
-            position:'absolute', inset:0, opacity:.35, mixBlendMode:'multiply',
+          <div style={{ position:'absolute', inset:0, opacity:.35, mixBlendMode:'multiply',
             backgroundImage:'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.1\'/%3E%3C/svg%3E")',
           }}/>
+
           {/* border inset */}
-          <div style={{ position:'absolute', inset:6, border:`1px solid ${book.ink}`, opacity:.14, borderRadius:1 }}/>
+          <div style={{ position:'absolute', inset:8, border:`1px solid ${book.ink}`, opacity:.18, borderRadius:1 }}/>
 
           {/* cover image */}
           {book.coverImageUrl && (
@@ -223,35 +196,70 @@ function Book({ book, index, isActive, bookH, onClick }: {
 
           {/* typography */}
           {!book.coverImageUrl && (
-            <div style={{ position:'absolute', inset:0, padding:'12px 10px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
-              <span style={{ fontFamily:'Inter,sans-serif', fontSize:'6px', fontWeight:600, letterSpacing:'.2em', textTransform:'uppercase', color:book.ink, opacity:.7 }}>
-                {PUBLISHERS[book.publication]?.short || 'PB'}
+            <div style={{ position:'absolute', inset:0, padding:'18px 16px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+              <span style={{ fontFamily:'Inter,sans-serif', fontSize:'8px', fontWeight:600, letterSpacing:'.2em', textTransform:'uppercase', color:book.ink, opacity:.7 }}>
+                {PUBLISHERS[book.publication]?.label || 'PB'}
               </span>
               <div>
-                <div style={{ fontFamily:'"Newsreader",Georgia,serif', fontSize:book.title.length>22?'12px':'15px', fontWeight:400, lineHeight:1.1, letterSpacing:'-.03em', color:book.ink, marginBottom:'5px' }}>
+                <div style={{ fontFamily:'"Newsreader",Georgia,serif', fontSize: book.title.length > 22 ? '18px' : '22px', fontWeight:400, lineHeight:1.1, letterSpacing:'-.03em', color:book.ink, marginBottom:'8px' }}>
                   {book.title}
                 </div>
-                <div style={{ fontFamily:'Inter,sans-serif', fontSize:'7px', color:book.ink, opacity:.7 }}>{book.author}</div>
+                <div style={{ fontFamily:'Inter,sans-serif', fontSize:'10px', color:book.ink, opacity:.7 }}>{book.author}</div>
               </div>
-              <span style={{ fontFamily:'Inter,sans-serif', fontSize:'5px', fontWeight:600, letterSpacing:'.16em', textTransform:'uppercase', color:book.ink, opacity:.45 }}>
+              <span style={{ fontFamily:'Inter,sans-serif', fontSize:'6px', fontWeight:600, letterSpacing:'.16em', textTransform:'uppercase', color:book.ink, opacity:.45 }}>
                 {PUBLISHERS[book.publication]?.label || ''}
               </span>
             </div>
           )}
 
-          {/* left edge shadow */}
-          <div style={{ position:'absolute', top:0, bottom:0, left:0, width:8, background:'linear-gradient(to right,rgba(0,0,0,0.2),transparent)', pointerEvents:'none' }}/>
+          {/* spine shadow on left */}
+          <div style={{ position:'absolute', top:0, bottom:0, left:0, width:10, background:'linear-gradient(to right,rgba(0,0,0,0.22),transparent)', pointerEvents:'none' }}/>
         </div>
-
-        {/* page edge */}
+      ) : (
+        /* ── Default: spine only ── */
         <div style={{
-          position:'absolute', top:3, bottom:3, right:-4, width:4,
-          background:'linear-gradient(to right,#e9dfca,#f0e8d6)',
-          borderRadius:'0 2px 2px 0',
-          opacity: active ? 0 : 1,
-          transition:'opacity 0.3s ease',
-        }}/>
-      </div>
+          position: 'relative',
+          height: '100%',
+          width: `${book.thickness}px`,
+        }}>
+          {/* Spine */}
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: book.cover,
+            borderRadius: '2px 0 0 2px',
+            overflow: 'hidden',
+            boxShadow: hov ? '-5px 8px 24px rgba(0,0,0,0.38)' : '-2px 4px 12px rgba(0,0,0,0.24)',
+            transition: 'box-shadow 0.4s ease',
+          }}>
+            {/* accent stripe */}
+            <div style={{ position:'absolute', left:4, top:10, bottom:10, width:3, background:book.accent, borderRadius:2, opacity:.9 }}/>
+            {/* rotated title */}
+            <div style={{
+              position:'absolute', bottom:24, left:'50%',
+              transform:'translateX(-50%) rotate(-90deg)',
+              transformOrigin:'center center',
+              width:`${book.height * bookH - 52}px`,
+              textAlign:'left', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis',
+            }}>
+              <span style={{
+                fontFamily:'"Newsreader","Georgia",serif',
+                fontSize: book.title.length > 22 ? '7px' : '8.5px',
+                fontWeight:500, color:book.ink, letterSpacing:'0.04em', opacity:.9,
+              }}>{book.title}</span>
+            </div>
+            {/* headbands */}
+            <div style={{ position:'absolute', top:3, left:4, right:4, height:5, background:book.accent, borderRadius:'1px 1px 0 0', opacity:.85 }}/>
+            <div style={{ position:'absolute', bottom:3, left:4, right:4, height:5, background:book.accent, borderRadius:'0 0 1px 1px', opacity:.85 }}/>
+          </div>
+
+          {/* page edge */}
+          <div style={{
+            position:'absolute', top:3, bottom:3, right:-4, width:4,
+            background:'linear-gradient(to right,#e9dfca,#f0e8d6)',
+            borderRadius:'0 2px 2px 0',
+          }}/>
+        </div>
+      )}
     </div>
   )
 }
@@ -351,7 +359,7 @@ export default function BookShelf() {
   const dragTravel = useRef(0)
 
   const VISIBLE = 12
-  const BOOK_H = 260  // base book height px
+  const BOOK_H = 340  // base book height px
 
   useEffect(() => {
     fetch('/api/books')
