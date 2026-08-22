@@ -7,14 +7,37 @@ type ShelfBook = {
   id: string
   title: string
   author: string
-  cover: string       // background color
-  accent: string      // spine stripe + headband color
-  ink: string         // text color
-  height: number      // relative height 1.0–1.15
-  thickness: number   // spine width in px (20–44)
+  cover: string
+  accent: string
+  ink: string
+  height: number
+  thickness: number
   publication: Publisher
   coverImageUrl?: string
 }
+
+/* ─── Fallback books from mint-playground catalog ─── */
+const FALLBACK_BOOKS: ShelfBook[] = [
+  { id: 'maintenance',      title: 'Maintenance: Of Everything, Part One', author: 'Stewart Brand',           cover: '#4d746d', accent: '#b36b43', ink: '#f0e5cf', height: 1.10, thickness: 36, publication: 'bh' },
+  { id: 'poor-charlie',     title: "Poor Charlie's Almanack",              author: 'Peter D. Kaufman',        cover: '#6f2130', accent: '#d5a756', ink: '#f4ead7', height: 1.08, thickness: 32, publication: 'fp' },
+  { id: 'art-of-science',   title: 'The Art of Doing Science',             author: 'Dwarkesh Patel',          cover: '#c07040', accent: '#1a2a4a', ink: '#f5e8d0', height: 1.05, thickness: 30, publication: 'kitab' },
+  { id: 'high-growth',      title: 'High Growth Handbook',                 author: 'Elad Gil',                cover: '#1c2b4a', accent: '#e0a955', ink: '#f5edd8', height: 1.12, thickness: 38, publication: 'imprint' },
+  { id: 'origins',          title: 'The Origins of Efficiency',            author: 'Brian Potter',            cover: '#e8ddc6', accent: '#2457a6', ink: '#bf493f', height: 1.06, thickness: 28, publication: 'nepalaya' },
+  { id: 'scaling-people',   title: 'Scaling People',                       author: 'Claire Hughes Johnson',   cover: '#c06858', accent: '#f5e8d0', ink: '#1a0a08', height: 1.09, thickness: 34, publication: 'lipi' },
+  { id: 'revolt-public',    title: 'The Revolt of the Public',             author: 'Martin Gurri',            cover: '#e8c8a0', accent: '#3a1a0a', ink: '#2a1408', height: 1.07, thickness: 30, publication: 'sunbarshi' },
+  { id: 'big-score',        title: 'The Big Score',                        author: 'Michael S. Malone',       cover: '#1a1a1a', accent: '#c0a040', ink: '#f0e8d0', height: 1.04, thickness: 26, publication: 'indigo' },
+  { id: 'elegant-puzzle',   title: 'An Elegant Puzzle',                    author: 'Will Larson',             cover: '#2a3a2a', accent: '#c0b050', ink: '#f4ead4', height: 1.10, thickness: 32, publication: 'kalam' },
+  { id: 'scaling-era',      title: 'The Scaling Era',                      author: 'John Collison',           cover: '#1e2a4a', accent: '#c8a840', ink: '#f0e8d0', height: 1.08, thickness: 34, publication: 'shailee' },
+  { id: 'boom',             title: 'Boom',                                 author: 'Ben Reinhardt',           cover: '#3a2010', accent: '#d08040', ink: '#f4e8d4', height: 1.06, thickness: 30, publication: 'sambodhan' },
+  { id: 'network-state',    title: 'The Network State',                    author: 'Balaji Srinivasan',       cover: '#1e3040', accent: '#c0a040', ink: '#f0e8d0', height: 1.11, thickness: 36, publication: 'ratna' },
+  { id: 'working-public',   title: 'Working in Public',                    author: 'Nadia Eghbal',            cover: '#2a1520', accent: '#d4806a', ink: '#f5e0d0', height: 1.05, thickness: 28, publication: 'educational' },
+  { id: 'zero-one',         title: 'Zero to One',                          author: 'Peter Thiel',             cover: '#0a0a0a', accent: '#c9a227', ink: '#f0e8d0', height: 1.09, thickness: 26, publication: 'sas' },
+  { id: 'hard-thing',       title: 'The Hard Thing About Hard Things',     author: 'Ben Horowitz',            cover: '#1a3040', accent: '#e0b060', ink: '#f5edd8', height: 1.07, thickness: 32, publication: 'shangrila' },
+  { id: 'innovators',       title: 'The Innovators',                       author: 'Walter Isaacson',         cover: '#2e1f3e', accent: '#c4a055', ink: '#f5e8d0', height: 1.12, thickness: 38, publication: 'bh' },
+  { id: 'made-to-stick',    title: 'Made to Stick',                        author: 'Chip Heath & Dan Heath',  cover: '#8b2020', accent: '#f0d070', ink: '#f8f0e0', height: 1.04, thickness: 28, publication: 'fp' },
+  { id: 'lean-startup',     title: 'The Lean Startup',                     author: 'Eric Ries',               cover: '#1a3a1a', accent: '#c0d040', ink: '#f0f4e0', height: 1.08, thickness: 30, publication: 'kitab' },
+  { id: 'shoe-dog',         title: 'Shoe Dog',                             author: 'Phil Knight',             cover: '#3a1a0a', accent: '#e08040', ink: '#f5e8d0', height: 1.06, thickness: 34, publication: 'imprint' },
+]
 
 /* ─── Palette generator from publication color ─── */
 function paletteFrom(pub: Publisher, idx: number) {
@@ -475,7 +498,7 @@ function BookDetail({ book, onClose }: { book: ShelfBook; onClose: () => void })
 
 /* ─── Main BookShelf component ─── */
 export default function BookShelf() {
-  const [books, setBooks] = useState<ShelfBook[]>([])
+  const [books, setBooks] = useState<ShelfBook[]>(FALLBACK_BOOKS)
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
   const [scrollIndex, setScrollIndex] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -492,6 +515,10 @@ export default function BookShelf() {
         id: string; title: string; author: string; coverImageUrl: string;
         publication: string; createdAt: string;
       }>) => {
+        if (!data || data.length === 0) {
+          setBooks(FALLBACK_BOOKS)
+          return
+        }
         const mapped: ShelfBook[] = data.map((b, i) => {
           const palette = paletteFrom(b.publication as Publisher, i)
           return {
@@ -509,7 +536,7 @@ export default function BookShelf() {
         })
         setBooks(mapped)
       })
-      .catch(() => setBooks([]))
+      .catch(() => setBooks(FALLBACK_BOOKS))
   }, [])
 
   const maxScroll = Math.max(0, books.length - VISIBLE)
@@ -537,8 +564,6 @@ export default function BookShelf() {
   }
 
   const activeBook = activeIndex !== null ? visibleBooks[activeIndex] : null
-
-  if (books.length === 0) return null
 
   return (
     <div style={{
