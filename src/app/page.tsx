@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import BookCarousel from '../components/BookCarousel'
+import BookShelf from '../components/BookShelf'
 import Grain from '../components/Grain'
 import HeroBookMockup from '../components/HeroBookMockup'
 import { useReveal } from '../hooks/useReveal'
@@ -332,6 +333,13 @@ export default function Home() {
           zIndex: 2,
           animation: 'fadeIn 1.2s 0.8s both',
         }} />
+      </section>
+
+      {/* ══════════════════════════════════════════
+          BOOKSHELF
+      ══════════════════════════════════════════ */}
+      <section style={{ borderTop: '1px solid rgba(14,12,10,0.08)' }}>
+        <BookShelf />
       </section>
 
       {/* ══════════════════════════════════════════
