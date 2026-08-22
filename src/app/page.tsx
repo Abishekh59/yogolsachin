@@ -238,7 +238,7 @@ export default function Home() {
       {/* ══════════════════════════════════════════
           HERO — Bookshelf
       ══════════════════════════════════════════ */}
-      <section style={{ position: 'relative', height: '100svh', minHeight: 600, overflow: 'hidden' }}>
+      <section style={{ position: 'relative' }}>
         <BookShelf />
       </section>
 
