@@ -335,6 +335,17 @@ const FP: BookRecord[] = [
 ]
 
 /* ═══════════════════════════════════════════════════════
-   COMBINED — Bookhill first, then Fine Print
+   SUNBARSHI — 5 books
 ═══════════════════════════════════════════════════════ */
-export let BOOKS_DATA: BookRecord[] = [...BH, ...FP]
+const SB: BookRecord[] = [
+  b('sunbarshi','Ujyalotira','978-9937-094-51-1','Tikaram Regmi','Fiction'),
+  b('sunbarshi','Paisako Nalibeli','978-9937-129-68-8','Yogendra Timalsina','Non Fiction'),
+  b('sunbarshi','Ganitiya Juktiharu','978-9937-137-36-2','Tilak Bahadur Khatri','Non Fiction'),
+  b('sunbarshi','Basuriko Dhun','978-9937-163-36-1','Tikaram Regmi','Fiction'),
+  b('sunbarshi','Sahasi Denis','','Victor Dragunsky','Translation'),
+]
+
+/* ═══════════════════════════════════════════════════════
+   COMBINED
+═══════════════════════════════════════════════════════ */
+export let BOOKS_DATA: BookRecord[] = [...BH, ...FP, ...SB]
