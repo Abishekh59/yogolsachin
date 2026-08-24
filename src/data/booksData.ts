@@ -41,7 +41,8 @@ function b(
     description: '', coverImageUrl, publication: pub,
     hasSpotUV: false, hasMatteLamination: false, hasFoilEmboss: false,
     isBestSeller: false, isAwardWinner: false,
-    awardName: '', purchaseLink: '',
+    awardName: '',
+    purchaseLink: pub === 'fp' ? 'https://fineprint.com.np' : '',
     createdAt: now, updatedAt: now,
   }
 }
