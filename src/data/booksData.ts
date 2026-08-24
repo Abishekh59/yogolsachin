@@ -35,10 +35,16 @@ function b(
   collaboratorArtist = '',
   coverImageUrl = ''
 ): BookRecord {
+  // Use Open Library cover API as reference image if no custom cover provided
+  const cover = coverImageUrl
+    ? coverImageUrl
+    : isbn
+    ? `https://covers.openlibrary.org/b/isbn/${isbn.replace(/-/g, '')}-L.jpg`
+    : ''
   return {
     id: id(), title, isbn, author, genre,
     size: '', layoutDesigner, collaboratorArtist,
-    description: '', coverImageUrl, publication: pub,
+    description: '', coverImageUrl: cover, publication: pub,
     hasSpotUV: false, hasMatteLamination: false, hasFoilEmboss: false,
     isBestSeller: false, isAwardWinner: false,
     awardName: '',
