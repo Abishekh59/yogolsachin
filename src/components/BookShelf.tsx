@@ -15,29 +15,27 @@ type ShelfBook = {
   thickness: number
   publication: Publisher
   coverImageUrl?: string
+  spineImageUrl?: string
 }
 
-/* ─── Fallback catalog ─── */
+/* ─── 16 real books with cover + spine images ─── */
 const FALLBACK_BOOKS: ShelfBook[] = [
-  { id: 'maintenance',    title: 'Maintenance: Of Everything',       author: 'Stewart Brand',          cover: '#4d746d', accent: '#b36b43', ink: '#f0e5cf', height: 1.10, thickness: 48, publication: 'bh' },
-  { id: 'poor-charlie',   title: "Poor Charlie's Almanack",          author: 'Peter D. Kaufman',       cover: '#6f2130', accent: '#d5a756', ink: '#f4ead7', height: 1.08, thickness: 42, publication: 'fp' },
-  { id: 'art-of-science', title: 'The Art of Doing Science',         author: 'Dwarkesh Patel',         cover: '#c07040', accent: '#1a2a4a', ink: '#f5e8d0', height: 1.05, thickness: 38, publication: 'kitab' },
-  { id: 'high-growth',    title: 'High Growth Handbook',             author: 'Elad Gil',               cover: '#1c2b4a', accent: '#e0a955', ink: '#f5edd8', height: 1.12, thickness: 52, publication: 'imprint' },
-  { id: 'origins',        title: 'The Origins of Efficiency',        author: 'Brian Potter',           cover: '#e8ddc6', accent: '#2457a6', ink: '#bf493f', height: 1.06, thickness: 36, publication: 'nepalaya' },
-  { id: 'scaling-people', title: 'Scaling People',                   author: 'Claire Hughes Johnson',  cover: '#c06858', accent: '#f5e8d0', ink: '#1a0a08', height: 1.09, thickness: 44, publication: 'lipi' },
-  { id: 'revolt-public',  title: 'The Revolt of the Public',         author: 'Martin Gurri',           cover: '#e8c8a0', accent: '#3a1a0a', ink: '#2a1408', height: 1.07, thickness: 40, publication: 'sunbarshi' },
-  { id: 'big-score',      title: 'The Big Score',                    author: 'Michael S. Malone',      cover: '#1a1a1a', accent: '#c0a040', ink: '#f0e8d0', height: 1.04, thickness: 34, publication: 'indigo' },
-  { id: 'elegant-puzzle', title: 'An Elegant Puzzle',                author: 'Will Larson',            cover: '#2a3a2a', accent: '#c0b050', ink: '#f4ead4', height: 1.10, thickness: 42, publication: 'kalam' },
-  { id: 'scaling-era',    title: 'The Scaling Era',                  author: 'John Collison',          cover: '#1e2a4a', accent: '#c8a840', ink: '#f0e8d0', height: 1.08, thickness: 46, publication: 'shailee' },
-  { id: 'boom',           title: 'Boom',                             author: 'Ben Reinhardt',          cover: '#3a2010', accent: '#d08040', ink: '#f4e8d4', height: 1.06, thickness: 38, publication: 'sambodhan' },
-  { id: 'network-state',  title: 'The Network State',                author: 'Balaji Srinivasan',      cover: '#1e3040', accent: '#c0a040', ink: '#f0e8d0', height: 1.11, thickness: 48, publication: 'ratna' },
-  { id: 'working-public', title: 'Working in Public',                author: 'Nadia Eghbal',           cover: '#2a1520', accent: '#d4806a', ink: '#f5e0d0', height: 1.05, thickness: 36, publication: 'educational' },
-  { id: 'zero-one',       title: 'Zero to One',                      author: 'Peter Thiel',            cover: '#0a0a0a', accent: '#c9a227', ink: '#f0e8d0', height: 1.09, thickness: 34, publication: 'sas' },
-  { id: 'hard-thing',     title: 'The Hard Thing About Hard Things',  author: 'Ben Horowitz',          cover: '#1a3040', accent: '#e0b060', ink: '#f5edd8', height: 1.07, thickness: 44, publication: 'shangrila' },
-  { id: 'innovators',     title: 'The Innovators',                   author: 'Walter Isaacson',        cover: '#2e1f3e', accent: '#c4a055', ink: '#f5e8d0', height: 1.12, thickness: 50, publication: 'bh' },
-  { id: 'made-to-stick',  title: 'Made to Stick',                    author: 'Chip & Dan Heath',       cover: '#8b2020', accent: '#f0d070', ink: '#f8f0e0', height: 1.04, thickness: 36, publication: 'fp' },
-  { id: 'lean-startup',   title: 'The Lean Startup',                 author: 'Eric Ries',              cover: '#1a3a1a', accent: '#c0d040', ink: '#f0f4e0', height: 1.08, thickness: 40, publication: 'kitab' },
-  { id: 'shoe-dog',       title: 'Shoe Dog',                         author: 'Phil Knight',            cover: '#3a1a0a', accent: '#e08040', ink: '#f5e8d0', height: 1.06, thickness: 44, publication: 'imprint' },
+  { id: 'pagal-basti',      title: 'Pagal Basti',                      author: 'Sarubhakta',              cover: '#1a0a08', accent: '#c9a227', ink: '#f5e8d0', height: 1.10, thickness: 44, publication: 'bh',      coverImageUrl: '/Home/Pagal Basti.jpg',                        spineImageUrl: '/Home/Pagal Basti Spin.jpg' },
+  { id: 'bhagna-bhairav',   title: 'Bhagna Bhairav',                   author: 'Prollaas Sindhuliya',     cover: '#2a1010', accent: '#c03030', ink: '#f0e0d0', height: 1.08, thickness: 40, publication: 'bh',      coverImageUrl: '/Home/BHAGNA BHAIRAV.jpg',                     spineImageUrl: '/Home/BHAGNA BHAIRAV Spin.jpg' },
+  { id: 'bhuiyan',          title: 'Bhuiyan',                          author: 'Yangesh',                 cover: '#3a2010', accent: '#e0a030', ink: '#f5e8d0', height: 1.06, thickness: 36, publication: 'fp',      coverImageUrl: '/Home/BHUIYAN COVER.jpg',                      spineImageUrl: '/Home/BHUIYAN Spin.jpg' },
+  { id: 'basuriko',         title: 'Basuriko Dhun',                    author: 'Tikaram Regmi',           cover: '#e8ddc6', accent: '#c9a227', ink: '#2a1408', height: 1.09, thickness: 38, publication: 'sunbarshi',coverImageUrl: '/Home/Basuriko.jpg',                           spineImageUrl: '/Home/Basuriko Spin.jpg' },
+  { id: 'godhuli-geet',     title: 'Godhuli Geet',                     author: 'Bhanu Bokhim',            cover: '#1a2a4a', accent: '#e0a955', ink: '#f5edd8', height: 1.12, thickness: 42, publication: 'kalam',   coverImageUrl: '/Home/Godhuli Geet.jpg',                       spineImageUrl: '/Home/Godhuli Geet Spin.jpg' },
+  { id: 'hans',             title: 'Hansa',                            author: 'Sanjeev Uprety',          cover: '#0a0a1a', accent: '#6080c0', ink: '#f0e8d0', height: 1.07, thickness: 36, publication: 'bh',      coverImageUrl: '/Home/Hans.jpg',                               spineImageUrl: '/Home/Hans Spin.jpg' },
+  { id: 'kalpagrantha',     title: 'Kalpa-Grantha',                    author: 'Kumar Nagarkoti',         cover: '#0a0a0a', accent: '#c0a040', ink: '#f0e8d0', height: 1.10, thickness: 44, publication: 'bh',      coverImageUrl: '/Home/Kalpagrantha.jpg',                       spineImageUrl: '/Home/Kalpagrantha Spin.jpg' },
+  { id: 'lost-n-found',     title: 'Lost n Found',                     author: '',                        cover: '#c07040', accent: '#1a2a4a', ink: '#f5e8d0', height: 1.05, thickness: 38, publication: 'bh',      coverImageUrl: '/Home/Lost n Found .jpg',                      spineImageUrl: '/Home/Lost n Found Spin.jpg' },
+  { id: 'maidaro',          title: 'Maidaro',                          author: 'Bhupeen',                 cover: '#1c1010', accent: '#c03030', ink: '#f0e0d0', height: 1.11, thickness: 46, publication: 'bh',      coverImageUrl: '/Home/MAIDARO.jpg',                            spineImageUrl: '/Home/MAIDARO Spin.jpg' },
+  { id: 'mithya',           title: 'Mithya',                           author: 'Deepak Parajuli',         cover: '#0a0a0a', accent: '#808080', ink: '#f0e8d0', height: 1.08, thickness: 40, publication: 'bh',      coverImageUrl: '/Home/MITHYA.jpg',                             spineImageUrl: '/Home/MITHYA Spin.jpg' },
+  { id: 'mukam-ranamaidan', title: 'Mukam Ranamaidan',                 author: 'Mohan Mainali',           cover: '#1a0808', accent: '#c03030', ink: '#f5e0d0', height: 1.09, thickness: 42, publication: 'bh',      coverImageUrl: '/Home/Mukam Ranamaidan.jpg',                   spineImageUrl: '/Home/Mukam Ranamaidan Spin.jpg' },
+  { id: 'nepal-nakuleko',   title: 'Nepal Nakhuleko Pato',             author: 'Dr. Tirthabahadur Shrestha', cover: '#e8ddc6', accent: '#2457a6', ink: '#2a1408', height: 1.07, thickness: 36, publication: 'bh',   coverImageUrl: '/Home/Nepal Nakuleko Pato .jpg',               spineImageUrl: '/Home/Nepal Nakuleko Pato  Spin.jpg' },
+  { id: 'parbat-parbatma',  title: 'Parbat Parbatma Batuwa Gham',     author: 'Ramesh Kshitiz',          cover: '#0d2818', accent: '#d4a030', ink: '#f2e8d0', height: 1.06, thickness: 38, publication: 'bh',      coverImageUrl: '/Home/PARBAT PARBATMA .jpg',                   spineImageUrl: '/Home/PARBAT PARBATMA Spin.jpg' },
+  { id: 'sati',             title: 'Sati',                             author: 'Sujit Mainali',           cover: '#1a3040', accent: '#e0b060', ink: '#f5edd8', height: 1.12, thickness: 44, publication: 'kitab',   coverImageUrl: '/Home/Sati.jpg',                               spineImageUrl: '/Home/Sati Spin.jpg' },
+  { id: 'vegetarian',       title: 'Vegeterian',                       author: 'Han Kang',                cover: '#0a1a1a', accent: '#40c080', ink: '#f0f4e0', height: 1.08, thickness: 36, publication: 'bh',      coverImageUrl: '/Home/Vegetarian.jpg',                         spineImageUrl: '/Home/Vegetarian Spin.jpg' },
+  { id: 'ray-of-light',     title: 'A Ray of Light in the Himalayas', author: 'Takashi Miyahara',        cover: '#1a2a4a', accent: '#6080c0', ink: '#f5edd8', height: 1.10, thickness: 42, publication: 'fp',      coverImageUrl: '/Home/A Ray of Light in the Himalayas.jpg',   spineImageUrl: '/Home/A Ray of Light in the Himalayas Spin.jpg' },
 ]
 
 /* ─── Palette generator ─── */
@@ -180,14 +178,25 @@ function Spine({ book, bookH, hovered }: { book: ShelfBook; bookH: number; hover
       boxShadow: hovered ? '-5px 8px 24px rgba(0,0,0,.38)' : '-2px 4px 12px rgba(0,0,0,.24)',
       transition: 'box-shadow 0.4s ease',
     }}>
-      <div style={{
-        position:'absolute', top:'50%', left:'50%',
-        transform:'translate(-50%,-50%) rotate(-90deg)', transformOrigin:'center center',
-        width:`${book.height * bookH - 52}px`,
-        overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', textAlign:'left',
-      }}>
-        <span style={{ fontFamily:'"Newsreader","Georgia",serif', fontSize:book.title.length>30?'9px':'11px', fontWeight:650, color:book.ink, letterSpacing:'.04em' }}>{book.title}</span>
-      </div>
+      {book.spineImageUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={book.spineImageUrl} alt={`${book.title} spine`}
+          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' }}/>
+      ) : (
+        <>
+          <div style={{ position:'absolute', left:4, top:10, bottom:10, width:3, background:book.accent, borderRadius:2, opacity:.9 }}/>
+          <div style={{
+            position:'absolute', top:'50%', left:'50%',
+            transform:'translate(-50%,-50%) rotate(-90deg)', transformOrigin:'center center',
+            width:`${book.height * bookH - 52}px`,
+            overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', textAlign:'left',
+          }}>
+            <span style={{ fontFamily:'"Newsreader","Georgia",serif', fontSize:book.title.length>30?'9px':'11px', fontWeight:650, color:book.ink, letterSpacing:'.04em' }}>{book.title}</span>
+          </div>
+          <div style={{ position:'absolute', top:3, left:4, right:4, height:5, background:book.accent, borderRadius:'1px 1px 0 0', opacity:.85 }}/>
+          <div style={{ position:'absolute', bottom:3, left:4, right:4, height:5, background:book.accent, borderRadius:'0 0 1px 1px', opacity:.85 }}/>
+        </>
+      )}
       {/* page edge */}
       <div style={{ position:'absolute', top:3, bottom:3, right:-4, width:4, background:'linear-gradient(to right,#e9dfca,#f0e8d6)', borderRadius:'0 2px 2px 0' }}/>
     </div>
@@ -271,7 +280,7 @@ export default function BookShelf() {
     : Math.min(540, Math.max(430, viewportHeight - 165))
   const BOOK_W = Math.round(BOOK_H * (2 / 3))
   const SPINE_W = Math.round(BOOK_W * 0.14)
-  const VISIBLE = 15
+  const VISIBLE = 16
   const HERO_BOOK_LIMIT = 15
 
   useEffect(() => {
