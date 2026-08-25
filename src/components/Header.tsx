@@ -41,15 +41,27 @@ function PubCircle({ pub, size = 56, onClick }: { pub: Publisher; size?: number;
         flexShrink: 0,
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={PUBLISHERS[pub].logo}
-          alt={PUBLISHERS[pub].label}
-          style={{
-            width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-            filter: hov ? 'none' : 'saturate(0.9)',
-            transition: 'filter 0.3s',
-          }}
-        />
+        {PUBLISHERS[pub].logo ? (
+          <img
+            src={PUBLISHERS[pub].logo}
+            alt={PUBLISHERS[pub].label}
+            style={{
+              width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+              filter: hov ? 'none' : 'saturate(0.9)',
+              transition: 'filter 0.3s',
+            }}
+          />
+        ) : (
+          <div style={{
+            width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: '#f4f1ea',
+          }}>
+            <svg width="52%" height="52%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#2a2a2a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#2a2a2a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        )}
       </div>
       <span style={{
         fontFamily: 'Inter, sans-serif', fontSize: '0.5rem', fontWeight: 500,
@@ -464,11 +476,23 @@ export default function Header() {
                               e.currentTarget.style.transform = 'scale(1)'
                             }}>
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={PUBLISHERS[p].logo}
-                              alt={PUBLISHERS[p].label}
-                              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                            />
+                            {PUBLISHERS[p].logo ? (
+                              <img
+                                src={PUBLISHERS[p].logo}
+                                alt={PUBLISHERS[p].label}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                              />
+                            ) : (
+                              <div style={{
+                                width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                background: '#f4f1ea',
+                              }}>
+                                <svg width="52%" height="52%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#2a2a2a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#2a2a2a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              </div>
+                            )}
                           </div>
                           <span style={{
                             fontFamily: 'Inter, sans-serif', fontSize: '0.45rem', fontWeight: 500,

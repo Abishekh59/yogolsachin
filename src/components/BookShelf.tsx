@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect, useRef } from 'react'
 import { PUBLISHERS, type Publisher } from '../data/books'
+import { BOOKS_DATA } from '../data/booksData'
 
 /* ─── Types ─── */
 type ShelfBook = {
@@ -179,17 +180,14 @@ function Spine({ book, bookH, hovered }: { book: ShelfBook; bookH: number; hover
       boxShadow: hovered ? '-5px 8px 24px rgba(0,0,0,.38)' : '-2px 4px 12px rgba(0,0,0,.24)',
       transition: 'box-shadow 0.4s ease',
     }}>
-      <div style={{ position:'absolute', left:4, top:10, bottom:10, width:3, background:book.accent, borderRadius:2, opacity:.9 }}/>
       <div style={{
-        position:'absolute', bottom:24, left:'50%',
-        transform:'translateX(-50%) rotate(-90deg)', transformOrigin:'center center',
+        position:'absolute', top:'50%', left:'50%',
+        transform:'translate(-50%,-50%) rotate(-90deg)', transformOrigin:'center center',
         width:`${book.height * bookH - 52}px`,
-        textAlign:'left', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis',
+        overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', textAlign:'left',
       }}>
-        <span style={{ fontFamily:'"Newsreader","Georgia",serif', fontSize:book.title.length>22?'7px':'8.5px', fontWeight:500, color:book.ink, letterSpacing:'.04em', opacity:.9 }}>{book.title}</span>
+        <span style={{ fontFamily:'"Newsreader","Georgia",serif', fontSize:book.title.length>30?'9px':'11px', fontWeight:650, color:book.ink, letterSpacing:'.04em' }}>{book.title}</span>
       </div>
-      <div style={{ position:'absolute', top:3, left:4, right:4, height:5, background:book.accent, borderRadius:'1px 1px 0 0', opacity:.85 }}/>
-      <div style={{ position:'absolute', bottom:3, left:4, right:4, height:5, background:book.accent, borderRadius:'0 0 1px 1px', opacity:.85 }}/>
       {/* page edge */}
       <div style={{ position:'absolute', top:3, bottom:3, right:-4, width:4, background:'linear-gradient(to right,#e9dfca,#f0e8d6)', borderRadius:'0 2px 2px 0' }}/>
     </div>
@@ -236,7 +234,7 @@ function DetailPanel({ book, index, total }: { book: ShelfBook; index: number; t
       </div>
 
       <p style={{ fontFamily:'"Newsreader",Georgia,serif', fontSize:'13px', lineHeight:1.5, color:'rgba(37,35,31,.65)', margin:'0 0 1.5rem' }}>
-        Scroll to browse the next volume
+        Use the arrows or index to explore the collection
       </p>
 
       <div style={{ display:'flex', alignItems:'center', gap:8, fontFamily:'Inter,sans-serif', fontSize:'8px', fontWeight:600, letterSpacing:'.14em', color:'rgba(37,35,31,.35)' }}>
@@ -252,63 +250,107 @@ function DetailPanel({ book, index, total }: { book: ShelfBook; index: number; t
 export default function BookShelf() {
   const [books, setBooks] = useState<ShelfBook[]>(FALLBACK_BOOKS)
   const [activeIdx, setActiveIdx] = useState(0)      // which book is "open"
-  const [isOpen, setIsOpen] = useState(false)         // is front cover showing
+  // Start with the first cover open so the landing view immediately shows a
+  // complete book, rather than a row of spines.
+  const [isOpen, setIsOpen] = useState(true)          // is front cover showing
   const [hovIdx, setHovIdx] = useState<number|null>(null)
+  const [viewportWidth, setViewportWidth] = useState(1440)
+  const [viewportHeight, setViewportHeight] = useState(900)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const lastScrollY = useRef(0)
   const scrollAccum = useRef(0)
-  const SCROLL_THRESHOLD = 80                          // px scroll needed to advance
-  const BOOK_H = 340
-  const VISIBLE = 12
+  const transitionLock = useRef(false)
+  const SCROLL_THRESHOLD = 160                         // px scroll needed to advance
+  // A single fixed footprint keeps every volume consistent and leaves room
+  // for the navigation, shelf, and header within the first viewport.
+  const compactShelf = viewportWidth < 640
+  // Grow the hero cover to use the available screen space, but retain room
+  // for the fixed header and the physical shelf on shorter displays.
+  const BOOK_H = compactShelf
+    ? Math.min(390, Math.max(320, viewportHeight - 210))
+    : Math.min(540, Math.max(430, viewportHeight - 165))
+  const BOOK_W = Math.round(BOOK_H * (2 / 3))
+  const SPINE_W = Math.round(BOOK_W * 0.14)
+  const VISIBLE = 15
+  const HERO_BOOK_LIMIT = 15
 
   useEffect(() => {
-    fetch('/api/books')
-      .then(r=>r.json())
-      .then((data:Array<{id:string;title:string;author:string;coverImageUrl:string;publication:string}>) => {
-        if (!data?.length) return
-        setBooks(data.map((b,i)=>{
-          const p=paletteFrom(i)
-          return { id:b.id, title:b.title, author:b.author, cover:p.cover, accent:p.accent, ink:p.ink,
-            height:.92+(i%5)*.056, thickness:22+(i%7)*4, publication:b.publication as Publisher,
-            coverImageUrl:b.coverImageUrl||undefined }
-        }))
-      }).catch(()=>{})
+    // Shuffle a copy so the homepage introduces a different cross-section
+    // of the local catalogue on each visit.
+    const heroBooks = [...BOOKS_DATA]
+    for (let i = heroBooks.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[heroBooks[i], heroBooks[j]] = [heroBooks[j], heroBooks[i]]
+    }
+    setBooks(heroBooks.slice(0, HERO_BOOK_LIMIT).map((b,i)=>{
+      const p=paletteFrom(i)
+      return { id:b.id, title:b.title, author:b.author, cover:p.cover, accent:p.accent, ink:p.ink,
+        height:1, thickness:SPINE_W, publication:b.publication as Publisher,
+        coverImageUrl:b.coverImageUrl||undefined }
+    }))
   }, [])
 
-  /* scroll handler: within the sticky section, accumulate scroll delta */
+  useEffect(() => {
+    const updateViewport = () => {
+      setViewportWidth(window.innerWidth)
+      setViewportHeight(window.innerHeight)
+    }
+    updateViewport()
+    window.addEventListener('resize', updateViewport, { passive: true })
+    return () => window.removeEventListener('resize', updateViewport)
+  }, [])
+
+  /* Scroll deliberately between volumes, avoiding rapid changes from a single swipe. */
   useEffect(() => {
     const handleScroll = () => {
       const el = wrapperRef.current
       if (!el) return
+      const currentY = window.scrollY
       const rect = el.getBoundingClientRect()
       // only intercept when shelf is in viewport
-      if (rect.top > 0 || rect.bottom < window.innerHeight) return
+      if (rect.top > 0 || rect.bottom < window.innerHeight) {
+        lastScrollY.current = currentY
+        scrollAccum.current = 0
+        return
+      }
 
-      const currentY = window.scrollY
       const delta = currentY - lastScrollY.current
       lastScrollY.current = currentY
+      if (transitionLock.current) return
       scrollAccum.current += delta
 
       if (scrollAccum.current > SCROLL_THRESHOLD) {
         scrollAccum.current = 0
+        transitionLock.current = true
         if (!isOpen) {
           // open current book
           setIsOpen(true)
+          window.setTimeout(() => { transitionLock.current = false }, 460)
         } else if (activeIdx < books.length - 1) {
           // close current, advance to next
           setIsOpen(false)
           setTimeout(() => {
             setActiveIdx(i => i + 1)
             setIsOpen(true)
-          }, 300)
+            transitionLock.current = false
+          }, 460)
+        } else {
+          transitionLock.current = false
         }
       } else if (scrollAccum.current < -SCROLL_THRESHOLD) {
         scrollAccum.current = 0
+        transitionLock.current = true
         if (isOpen) {
           setIsOpen(false)
+          window.setTimeout(() => { transitionLock.current = false }, 460)
         } else if (activeIdx > 0) {
           setActiveIdx(i => i - 1)
-          setTimeout(() => setIsOpen(true), 300)
+          setTimeout(() => {
+            setIsOpen(true)
+            transitionLock.current = false
+          }, 460)
+        } else {
+          transitionLock.current = false
         }
       }
     }
@@ -321,24 +363,45 @@ export default function BookShelf() {
   const visible = books.slice(visibleStart, visibleStart + VISIBLE)
   const activeBook = books[activeIdx]
   const motif = MOTIFS[activeIdx % MOTIFS.length]
-  const coverW = Math.round((activeBook?.thickness || 44) * 4.8)
+  const coverW = BOOK_W
+  const activePosition = activeIdx - visibleStart
 
-  // Total scroll height: 100vh sticky + each book needs ~2 scroll steps (open + close/advance)
-  const scrollHeight = `${100 + books.length * 200}vh`
+  const selectBook = (index: number) => {
+    if (index < 0 || index >= books.length || index === activeIdx || transitionLock.current) return
+    transitionLock.current = true
+    setIsOpen(false)
+    window.setTimeout(() => {
+      setActiveIdx(index)
+      setIsOpen(true)
+      transitionLock.current = false
+    }, 460)
+  }
+
+  // This is a landing-page hero, not a scroll trap. Keep it to one viewport so
+  // visitors move naturally into the work below after choosing a cover.
+  const scrollHeight = '100svh'
 
   return (
     <>
       <style>{`
-        @keyframes bookFaceIn { from{opacity:0;transform:translateY(14px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
-        @keyframes spineIn    { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes bookFaceIn { from{opacity:0;transform:translateY(22px) scale(.96)} to{opacity:1;transform:translateY(0) scale(1)} }
+        @keyframes spineIn    { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+        @media (max-width: 639px) {
+          .shelf-caption { display: none !important; }
+          .shelf-top-label { font-size: 7px !important; }
+          .shelf-bottom-help { display: none !important; }
+        }
+        @media (min-width: 640px) and (max-width: 1099px) {
+          .shelf-caption { display: none !important; }
+        }
       `}</style>
 
-      {/* scroll spacer — makes the page tall enough to scroll through all books */}
+      {/* Single, screen-filling bookshelf hero */}
       <div style={{ height: scrollHeight, position: 'relative' }} ref={wrapperRef}>
 
-        {/* sticky viewport */}
+        {/* viewport */}
         <div style={{
-          position: 'sticky', top: 0,
+          position: 'relative',
           height: '100svh', minHeight: 600,
           overflow: 'hidden',
           background: 'radial-gradient(circle at 50% 42%, rgba(255,255,255,.26), transparent 46%), #eee8db',
@@ -346,7 +409,7 @@ export default function BookShelf() {
         }}>
 
           {/* paper grain */}
-          <div style={{
+          <div className="shelf-caption" style={{
             position:'absolute', inset:0, zIndex:14, pointerEvents:'none',
             opacity:.18, mixBlendMode:'multiply',
             backgroundImage:`radial-gradient(circle at 12% 31%,rgba(45,35,24,.12) 0 .7px,transparent .8px),radial-gradient(circle at 73% 69%,rgba(255,255,255,.9) 0 .6px,transparent .7px)`,
@@ -359,7 +422,7 @@ export default function BookShelf() {
             display:'flex', alignItems:'flex-start', justifyContent:'space-between',
             padding:'22px clamp(22px,3.4vw,56px)', pointerEvents:'none',
           }}>
-            <div style={{ display:'flex', gap:13, alignItems:'center', fontFamily:'Inter,sans-serif', fontSize:'9px', fontWeight:650, letterSpacing:'.185em', color:'#25231f' }}>
+            <div className="shelf-top-label" style={{ display:'flex', gap:13, alignItems:'center', fontFamily:'Inter,sans-serif', fontSize:'9px', fontWeight:650, letterSpacing:'.185em', color:'#25231f' }}>
               <span>BOOK COVER DESIGN</span>
               <span style={{ width:28, height:1, background:'currentColor', opacity:.4, display:'inline-block' }}/>
               <span style={{ opacity:.5 }}>THE SHELF</span>
@@ -375,10 +438,10 @@ export default function BookShelf() {
             position:'absolute', zIndex:16,
             bottom:'clamp(120px,20vh,160px)',
             left:'clamp(24px,5.4vw,72px)',
-            width:'min(360px,32vw)',
+            width:'min(420px,36vw)',
             pointerEvents:'none',
-            opacity: isOpen ? 0 : 1,
-            transform: isOpen ? 'translate3d(-18px,0,0)' : 'none',
+            opacity: 1,
+            transform: 'none',
             transition:'opacity .38s ease, transform .48s cubic-bezier(.22,1,.36,1)',
           }}>
             <div style={{ position:'absolute', zIndex:-1, top:-36, right:-56, bottom:-32, left:-76, background:'linear-gradient(90deg,rgba(238,232,219,.96) 0%,rgba(238,232,219,.82) 58%,rgba(238,232,219,0) 100%)', pointerEvents:'none' }}/>
@@ -394,25 +457,21 @@ export default function BookShelf() {
               {activeBook?.author || ''}
             </p>
             <div style={{ display:'flex', alignItems:'center', gap:8, fontFamily:'Inter,sans-serif', fontSize:'8px', fontWeight:600, letterSpacing:'.14em', color:'rgba(37,35,31,.35)' }}>
-              <span>↓</span><span>SCROLL TO INSPECT</span>
+              <span>→</span><span>SELECT A VOLUME</span>
             </div>
           </div>
-
-          {/* detail panel when open */}
-          {isOpen && activeBook && (
-            <DetailPanel book={activeBook} index={activeIdx} total={books.length}/>
-          )}
 
           {/* shelf area */}
           <div style={{ position:'relative', height:'100%', display:'flex', alignItems:'flex-end', justifyContent:'center' }}>
 
             {/* books row */}
             <div style={{
-              position:'relative', zIndex:5,
+              position:'absolute', zIndex:5,
               display:'flex', alignItems:'flex-end', gap:'3px',
+              bottom:0,
               paddingBottom:'56px',
-              paddingLeft:'clamp(16px,6vw,80px)',
-              paddingRight:'clamp(16px,6vw,80px)',
+              left:`calc(50% - ${(isOpen ? BOOK_W : SPINE_W) / 2}px - ${activePosition * (SPINE_W + 3)}px)`,
+              transition:'left .6s cubic-bezier(.22,1,.36,1)',
             }}>
               {visible.map((book, i) => {
                 const globalIdx = visibleStart + i
@@ -428,34 +487,33 @@ export default function BookShelf() {
                       if (isActive) {
                         setIsOpen(p => !p)
                       } else {
-                        setIsOpen(false)
-                        setTimeout(() => { setActiveIdx(globalIdx); setIsOpen(true) }, 200)
+                        selectBook(globalIdx)
                       }
                     }}
                     style={{
                       cursor: 'pointer',
                       alignSelf: 'flex-end',
                       flexShrink: 0,
-                      transition: 'transform 0.45s cubic-bezier(.22,1,.36,1)',
+                      transition: 'transform 0.6s cubic-bezier(.22,1,.36,1)',
                       transform: isActive && isOpen
-                        ? 'translateY(-36px) scale(1.03)'
+                        ? 'translateY(-8px) scale(1.03)'
                         : hov ? 'translateY(-10px)' : 'translateY(0)',
                       transformOrigin: 'bottom center',
                       zIndex: isActive ? 20 : hov ? 10 : 1,
                     }}
                   >
                     {isActive && isOpen ? (
-                      <div style={{ animation:'bookFaceIn .42s cubic-bezier(.22,1,.36,1) both' }}>
+                      <div style={{ animation:'bookFaceIn .6s cubic-bezier(.22,1,.36,1) both' }}>
                         <FrontCover
                           book={book}
                           w={coverW}
-                          h={Math.round(book.height * BOOK_H)}
+                          h={BOOK_H}
                           motif={motif}
                         />
                       </div>
                     ) : (
-                      <div style={{ animation: isActive ? 'spineIn .3s ease both' : undefined }}>
-                        <Spine book={book} bookH={BOOK_H} hovered={hov}/>
+                      <div style={{ animation: isActive ? 'spineIn .42s cubic-bezier(.22,1,.36,1) both' : undefined }}>
+                        <Spine book={{ ...book, height: 1, thickness: SPINE_W }} bookH={BOOK_H} hovered={hov}/>
                       </div>
                     )}
                   </div>
@@ -489,9 +547,7 @@ export default function BookShelf() {
                 <button key={side}
                   onClick={()=>{
                     const next = activeIdx + dir
-                    if (next<0 || next>=books.length) return
-                    setIsOpen(false)
-                    setTimeout(()=>{ setActiveIdx(next); setIsOpen(true) }, 280)
+                    selectBook(next)
                   }}
                   disabled={disabled}
                   aria-label={dir===-1?'Previous':'Next'}
@@ -531,7 +587,7 @@ export default function BookShelf() {
               {books.map((_,i)=>{
                 const inView = i===activeIdx
                 return (
-                  <button key={i} onClick={()=>{ setIsOpen(false); setTimeout(()=>{ setActiveIdx(i); setIsOpen(true) },200) }}
+                  <button key={i} onClick={()=>selectBook(i)}
                     aria-label={`Go to book ${i+1}`}
                     style={{ position:'relative', display:'block', width:'100%', height:18, padding:0, background:'transparent', border:'none', cursor:'pointer' }}>
                     <span style={{
@@ -544,7 +600,7 @@ export default function BookShelf() {
                 )
               })}
             </div>
-            <div style={{ display:'flex', alignItems:'center', gap:10, fontFamily:'Inter,sans-serif', fontSize:'7px', fontWeight:600, letterSpacing:'.14em', color:'rgba(37,35,31,.4)', whiteSpace:'nowrap' }}>
+            <div className="shelf-bottom-help" style={{ display:'flex', alignItems:'center', gap:10, fontFamily:'Inter,sans-serif', fontSize:'7px', fontWeight:600, letterSpacing:'.14em', color:'rgba(37,35,31,.4)', whiteSpace:'nowrap' }}>
               <span>SCROLL</span>
               <span style={{ width:2, height:2, borderRadius:'50%', background:'currentColor', display:'inline-block' }}/>
               <span>CLICK</span>

@@ -14,6 +14,7 @@ export type Publisher =
   | 'educational'
   | 'sas'
   | 'shangrila'
+  | 'others'
 
 export type BookTag = 'award' | 'best-seller' | 'recent'
 
@@ -45,6 +46,7 @@ export const PUBLISHERS: Record<Publisher, { label: string; short: string; color
   educational: { label: 'Educational', short: 'ED', color: '#001a0a', logo: '/publication/13-Logos_Educational.jpg' },
   sas:         { label: 'SAS Trust',   short: 'ST', color: '#1a1218', logo: '/publication/14-Logos_SAS-Trust.jpg'   },
   shangrila:   { label: 'Shangrila',   short: 'SH', color: '#0d1a1a', logo: '/publication/15-Logos_Shangrila.jpg'   },
+  others:      { label: 'Others',      short: 'OT', color: '#2a2a2a', logo: ''                                       },
 }
 
 export const BOOKS: Book[] = []

@@ -346,6 +346,84 @@ const SB: BookRecord[] = [
 ]
 
 /* ═══════════════════════════════════════════════════════
+   NEPALAYA — 8 books
+═══════════════════════════════════════════════════════ */
+const NP: BookRecord[] = [
+  b('nepalaya','Kumari Prashna','978-9937-932-09-7','Durga Karki','Fiction'),
+  b('nepalaya','Dumero','978-9937-937-80-1','Sarala Gautam','Fiction'),
+  b('nepalaya','Singha Durbarko Ghumne Mech','978-9937-937-82-5','Sudha Sharma','Non Fiction'),
+  b('nepalaya','Parityakta','978-9937-937-81-8','Bhuwan Dhungana','Fiction'),
+  b('nepalaya','Kshamadaan','978-9937-937-85-6','Ganesh Prasad Lath','Fiction'),
+  b('nepalaya','Hiti Pranali','978-9937-937-89-4','Padma Sunder Joshi','Non Fiction'),
+  b('nepalaya','National Security and the State: A Focus on Nepal','978-9937-953-02-3','Keshar Bahadur Bhandari','Non Fiction'),
+  b('nepalaya','Chitralekhako Chaurasi','978-9937-953-07-8','Prajwal Parajuly','Fiction'),
+]
+
+/* ═══════════════════════════════════════════════════════
+   KITAB — 16 books
+═══════════════════════════════════════════════════════ */
+const KT: BookRecord[] = [
+  b('kitab','Biman Bidroha','978-9937-043-71-7','Durga Subedi','Non Fiction','Bijay Maharjan','Bhishan Rajbhandari'),
+  b('kitab','Aghori','978-9937-049-04-7','Rajendra Parajuli','Fiction','Saroj Ramtel'),
+  b('kitab','Durbarko Dukhanta','978-9937-059-26-8','Sundarpratap Rana','Non Fiction','Saroj Ramtel'),
+  b('kitab','Pararashtra ka Patra','978-9937-061-48-3','Dr. Madan Kumar Bhattarai','Non Fiction','Saroj Ramtel'),
+  b('kitab','Kara','978-9937-068-06-2','Sushila Karki','Fiction','Saroj Ramtel'),
+  b('kitab','Mokshabhumi','978-9937-076-89-0','Keshab Dahal','Fiction','Saroj Ramtel'),
+  b('kitab','Sanaiya','978-9937-088-39-8','Hom Karki','Non Fiction','Saroj Ramtel'),
+  b('kitab','Sati','978-9937-949-20-0','Sujit Mainali','Non Fiction','Saroj Ramtel'),
+  b('kitab','Oh Darjeeling!','978-9937-949-21-7','Mahendra P. Lama','Non Fiction','Saroj Ramtel'),
+  b('kitab','Pardesh ko Pasina','978-9937-949-23-1','Edited by Yangesh','Non Fiction','Saroj Ramtel'),
+  b('kitab','Madhavi O Madhavi','978-9937-949-24-8','Keshab Dahal','Fiction','Saroj Ramtel'),
+  b('kitab','Sala Pahadmein Kya Hai','978-9937-949-25-5','Minbahadur Bista','Fiction','Saroj Ramtel'),
+  b('kitab','Bhikshu, Byapar ra Bidroha','978-9937-949-27-9','Sudheer Sharma','Non Fiction','Saroj Ramtel'),
+  b('kitab','Himalpariko Huri','978-9937-949-26-2','Sudheer Sharma','Non Fiction','Saroj Ramtel'),
+  b('kitab','Saahas','978-9937-9492-8-6','Mina Poudel','Non Fiction','Saroj Ramtel'),
+  b('kitab','BP Ra Bidrohka Ti Din','978-9937-949-29-3','Dharma Gautam','Non Fiction','Saroj Ramtel'),
+]
+
+/* ═══════════════════════════════════════════════════════
+   KALAM — 3 books
+═══════════════════════════════════════════════════════ */
+const KL: BookRecord[] = [
+  b('kalam','Aato Oda','978-3027-120-66-1','Januka Khatiwada','Fiction'),
+  b('kalam','Godhuli Geet','978-9937-141-10-9','Bhanu Bokhim','Fiction'),
+  b('kalam','Anaavaran','978-9937-143-20-2','Bijaya Sapkota','Fiction'),
+]
+
+/* ═══════════════════════════════════════════════════════
+   LIPI — 3 books
+═══════════════════════════════════════════════════════ */
+const LP: BookRecord[] = [
+  b('lipi','B. P. Koirala: Ek Krantikari Byaktitwa','978-9937-933-75-9','Bhola Chaterjee','Non-Fiction'),
+  b('lipi','Yashodhara','978-9937-933-76-6','Hari Bol Kafle','Fiction'),
+  b('lipi','Dabli','978-9937-933-77-3','Rajeshwor Devkota','Fiction'),
+]
+
+/* ═══════════════════════════════════════════════════════
+   INDIGO — 2 books
+═══════════════════════════════════════════════════════ */
+const IN: BookRecord[] = [
+  b('indigo','Coronatantra','978-9937-134-67-5','Rabindra Sameer','Non Fiction','Bishnu Kumar'),
+  b('indigo','Bhurajnitiko Bhar','978-9937-143-31-8','Baburam Bishwakarma','Non Fiction','Bishnu Kumar'),
+]
+
+/* ═══════════════════════════════════════════════════════
+   OTHERS — 10 books
+═══════════════════════════════════════════════════════ */
+const OT: BookRecord[] = [
+  b('others','Side Hero','978-9937-708-45-6','Brazesh','Memoir'),
+  b('others','Yambunera','978-9937-705-51-6','Bina Theeng','Fiction'),
+  b('others','Slyapla Rinpoche','','',''),
+  b('others','Sanchaman','','',''),
+  b('others','Bimokshya','978-9937-775-39-7','Ghimire Yubaraj',''),
+  b('others','Himbu','','Sonam Lakhpa Sherpa',''),
+  b('others','Ganatantrako Pahilo Dashak','978-9937-074-01-8','Pushpa Kamal Dahal','Non Fiction'),
+  b('others','Prachanda - Naya Yug','','',''),
+  b('others','Nagarik Awaj','978-9937-1-3876-5','',''),
+  b('others','The Forest Fire','','',''),
+]
+
+/* ═══════════════════════════════════════════════════════
    COMBINED
 ═══════════════════════════════════════════════════════ */
-export let BOOKS_DATA: BookRecord[] = [...BH, ...FP, ...SB]
+export let BOOKS_DATA: BookRecord[] = [...BH, ...FP, ...SB, ...NP, ...KT, ...KL, ...LP, ...IN, ...OT]

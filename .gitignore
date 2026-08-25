@@ -13,3 +13,4 @@ logs/
 .claude-replay.*
 .tmp-*
 prisma/dev.db
+mint-playground/
