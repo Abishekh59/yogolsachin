@@ -1,7 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from 'react'
 import { PUBLISHERS, type Publisher } from '../data/books'
-import { BOOKS_DATA } from '../data/booksData'
 
 /* ─── Types ─── */
 type ShelfBook = {
@@ -276,27 +275,16 @@ export default function BookShelf() {
   // Grow the hero cover to use the available screen space, but retain room
   // for the fixed header and the physical shelf on shorter displays.
   const BOOK_H = compactShelf
-    ? Math.min(390, Math.max(320, viewportHeight - 210))
-    : Math.min(540, Math.max(430, viewportHeight - 165))
+    ? Math.min(440, Math.max(370, viewportHeight - 210))
+    : Math.min(600, Math.max(490, viewportHeight - 165))
   const BOOK_W = Math.round(BOOK_H * (2 / 3))
   const SPINE_W = Math.round(BOOK_W * 0.14)
   const VISIBLE = 16
   const HERO_BOOK_LIMIT = 15
 
   useEffect(() => {
-    // Shuffle a copy so the homepage introduces a different cross-section
-    // of the local catalogue on each visit.
-    const heroBooks = [...BOOKS_DATA]
-    for (let i = heroBooks.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[heroBooks[i], heroBooks[j]] = [heroBooks[j], heroBooks[i]]
-    }
-    setBooks(heroBooks.slice(0, HERO_BOOK_LIMIT).map((b,i)=>{
-      const p=paletteFrom(i)
-      return { id:b.id, title:b.title, author:b.author, cover:p.cover, accent:p.accent, ink:p.ink,
-        height:1, thickness:SPINE_W, publication:b.publication as Publisher,
-        coverImageUrl:b.coverImageUrl||undefined }
-    }))
+    // Always use the 16 curated real books with actual cover + spine images
+    setBooks(FALLBACK_BOOKS)
   }, [])
 
   useEffect(() => {
