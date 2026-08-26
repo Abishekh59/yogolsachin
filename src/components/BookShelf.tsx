@@ -430,28 +430,17 @@ export default function BookShelf() {
             </div>
           </div>
 
-          {/* left caption */}
+          {/* left caption — counter only, no title/author */}
           <div style={{
             position:'absolute', zIndex:16,
             bottom:'clamp(120px,20vh,160px)',
             left:'clamp(24px,5.4vw,72px)',
-            width:'min(420px,36vw)',
             pointerEvents:'none',
-            opacity: 1,
-            transform: 'none',
-            transition:'opacity .38s ease, transform .48s cubic-bezier(.22,1,.36,1)',
           }}>
-            <div style={{ position:'absolute', zIndex:-1, top:-36, right:-56, bottom:-32, left:-76, background:'linear-gradient(90deg,rgba(238,232,219,.96) 0%,rgba(238,232,219,.82) 58%,rgba(238,232,219,0) 100%)', pointerEvents:'none' }}/>
             <p style={{ display:'flex', gap:8, alignItems:'center', margin:'0 0 16px', fontFamily:'Inter,sans-serif', fontSize:'8px', fontWeight:620, letterSpacing:'.19em', color:'#25231f' }}>
               <span>{String(activeIdx+1).padStart(2,'0')}</span>
               <span style={{ width:38, height:1, background:'#25231f', opacity:.28, display:'inline-block' }}/>
               <span>{String(books.length).padStart(2,'0')}</span>
-            </p>
-            <h1 style={{ fontFamily:'"Newsreader","Fraunces",Georgia,serif', fontSize:'clamp(32px,4.2vw,62px)', fontWeight:430, letterSpacing:'-.045em', lineHeight:.92, color:'#25231f', margin:'0 0 14px', transition:'all .3s ease' }}>
-              {activeBook?.title || ''}
-            </h1>
-            <p style={{ fontFamily:'"Newsreader",Georgia,serif', fontSize:'14px', fontStyle:'italic', color:'rgba(37,35,31,.58)', margin:'0 0 20px' }}>
-              {activeBook?.author || ''}
             </p>
             <div style={{ display:'flex', alignItems:'center', gap:8, fontFamily:'Inter,sans-serif', fontSize:'8px', fontWeight:600, letterSpacing:'.14em', color:'rgba(37,35,31,.35)' }}>
               <span>→</span><span>SELECT A VOLUME</span>
@@ -467,7 +456,7 @@ export default function BookShelf() {
               display:'flex', alignItems:'flex-end', gap:'3px',
               bottom:0,
               paddingBottom:'56px',
-              left:`calc(50% - ${(isOpen ? BOOK_W : SPINE_W) / 2}px - ${activePosition * (SPINE_W + 3)}px)`,
+              left:`calc(30% - ${(isOpen ? BOOK_W : SPINE_W) / 2}px - ${activePosition * (SPINE_W + 3)}px)`,
               transition:'left .6s cubic-bezier(.22,1,.36,1)',
             }}>
               {visible.map((book, i) => {
